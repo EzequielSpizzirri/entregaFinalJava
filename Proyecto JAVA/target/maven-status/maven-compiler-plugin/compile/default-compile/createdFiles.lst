@@ -1,0 +1,9 @@
+proyectoJava\repositories\FacturaRepository.class
+proyectoJava\Main.class
+proyectoJava\repositories\DetalleFacturaRepository.class
+proyectoJava\entities\Factura.class
+proyectoJava\repositories\ClienteRepository.class
+proyectoJava\entities\Producto.class
+proyectoJava\entities\Cliente.class
+proyectoJava\entities\DetalleFactura.class
+proyectoJava\repositories\ProductoRepository.class
