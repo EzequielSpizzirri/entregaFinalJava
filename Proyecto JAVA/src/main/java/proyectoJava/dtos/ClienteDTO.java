@@ -1,46 +1,29 @@
-package proyectoJava.entities;
-import javax.persistence.*;
+package proyectoJava.dtos;
 
 import org.springframework.lang.NonNull;
 
-@Entity
-@Table(name = "clientes")
-public class Cliente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática del ID
-    private Long id;
+public class ClienteDTO {
 
-    @Column(name = "nombre") // Mapeo de columna
     @NonNull
     private String nombre;
 
     @NonNull
-    @Column(name = "direccion") // Mapeo de columna
     private String direccion;
 
     @NonNull
-    @Column(name = "telefono") // Mapeo de columna
     private String telefono;
 
-    // Constructor
-    public Cliente() { // Constructor vacío requerido por JPA
-    }
+    // Constructor sin parámetros
+    public ClienteDTO() {}
 
-    public Cliente(String nombre, String direccion, String telefono) {
+    // Constructor con parámetros
+    public ClienteDTO(String nombre, String direccion, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
     }
 
     // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getNombre() {
         return nombre;
     }

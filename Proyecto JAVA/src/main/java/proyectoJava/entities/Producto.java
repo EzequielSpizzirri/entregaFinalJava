@@ -9,7 +9,7 @@ public class Producto {
     @NonNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática del ID
-    private int id;
+    private Long id;
     @NonNull
     @Column(name = "nombre") // Mapeo de columna
     private String nombre;
@@ -27,11 +27,11 @@ public class Producto {
     }
 
     // Getters y Setters
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

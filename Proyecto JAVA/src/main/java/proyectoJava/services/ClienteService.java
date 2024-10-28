@@ -1,32 +1,51 @@
 package proyectoJava.services;
 
 import proyectoJava.Ext.ClienteExternoService;
+import proyectoJava.dtos.ClienteDTO;
 import proyectoJava.entities.Cliente;
 import proyectoJava.exceptions.ResourceNotFoundException;
 import proyectoJava.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ClienteService {
+    
+    private final ClienteExternoService clienteExternoService;
 
-      public Optional<Cliente> obtenerClientePorId(int id) {
+    @Autowired
+    public ClienteService(ClienteRepository clienteRepository, ClienteExternoService clienteExternoService) {
+        this.clienteRepository = clienteRepository;
+        this.clienteExternoService = clienteExternoService; // Inyección de ClienteExternoService
+    }
+
+    public Optional<Cliente> obtenerClientePorIdExt(Long id) { // Cambiado a Long
         Optional<Cliente> cliente = clienteRepository.findById(id);
 
         if (cliente.isPresent()) {
             // Obtener datos adicionales desde la API externa
-            Optional<String> detallesExterno = ClienteExternoService.obtenerDetallesClienteExterno(id);
+            Optional<String> detallesExterno = clienteExternoService.obtenerDetallesClienteExterno(id.intValue()); // Conversión a int
             if (detallesExterno.isPresent()) {
                 System.out.println("Detalles adicionales obtenidos de la API externa: " + detallesExterno.get());
             }
         }
 
-        return cliente;
+        return cliente; // Asegúrate de devolver el cliente
     }
 
+    public ClienteDTO convertirAClienteDTO(Cliente cliente) {
+        return new ClienteDTO(cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono());
+    }
+    
+    public Cliente convertirDesdeDTO(ClienteDTO clienteDTO) {
+        Cliente cliente = new Cliente();
+        cliente.setNombre(clienteDTO.getNombre());
+        cliente.setDireccion(clienteDTO.getDireccion());
+        cliente.setTelefono(clienteDTO.getTelefono());
+        return cliente;
+    }
 
     @Autowired
     private ClienteRepository clienteRepository;

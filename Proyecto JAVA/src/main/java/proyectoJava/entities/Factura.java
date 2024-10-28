@@ -12,7 +12,7 @@ public class Factura {
     @NonNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática del ID
-    private int id;
+    private Long id;
     @NonNull
     @ManyToOne // Relación muchos a uno con Cliente
     @JoinColumn(name = "cliente_id") // Nombre de la columna que referencia a Cliente
@@ -31,11 +31,11 @@ public class Factura {
     }
 
     // Getters y Setters
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

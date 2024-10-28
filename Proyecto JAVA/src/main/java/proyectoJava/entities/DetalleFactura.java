@@ -9,7 +9,7 @@ import org.springframework.lang.NonNull;
 public class DetalleFactura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática del ID
-    private int id;
+    private Long id;
 
     @NonNull
     @ManyToOne // Relación muchos a uno con Producto
@@ -28,11 +28,11 @@ public class DetalleFactura {
     }
 
     // Getters y Setters
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
